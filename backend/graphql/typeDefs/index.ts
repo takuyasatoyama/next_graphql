@@ -1,4 +1,28 @@
-export default `type User {
+export default `
+type Questionaire {
+  _id : ID,
+  label : String,
+  answer_type : Int,
+  answer : String
+}
+
+type InputQuestionaireType {
+  label : String,
+  answer_type : Int,
+  answer : String
+  
+}
+type Mutation {
+	deleteQuestionaire(_id : ID ) : Boolean 
+}
+type QuestionaireEdgesType {
+	edges : [Questionaire]
+}
+type Query {
+	readQuestionaire( _id : ID ) : Questionaire,
+	listQuestionaire( str : String ) : QuestionaireEdgesType,
+	searchQuestionaire( query : String!, fields : String!) : [Questionaire]
+} type User {
   _id: ID!
   email: String
   password: String
@@ -21,34 +45,6 @@ type UserEdgesType {
 
 type Query {
   readUser(_id: ID!): User
-  listUser( ): UserEdgesType
+  listUser( str : String! ): UserEdgesType
   searchUser(query: String!, fields: String!): [User]
-}
-
-type Questionaire {
-  _id : ID,
-  label : String,
-  answer_type : Int,
-  answer : Object
-}
-
-type InputQuestionaireType {
-  label : String,
-  answer_type : Int,
-  answer : Object
-  
-}
-type Mutation {
-	createQuestionaire(body : InputQuestionaire !) : Questionaire,
-	updateQuestionaire(_id : ID , body : InputQustionaire! ) : Questionaire,
-	deleteQuestionaire(_id : ID ) : Boolean 
-}
-type QuestionaireEdgesType {
-	edges : [Questionaire]
-}
-type Query {
-	readQuestionaire( _id : ID ) : Questionaire,
-	listQuestionaire( ) : QuestionaireEdgesType,
-	searchQuestionaire( query : String!, fields : String!) : [Questionaire]
-}
-`;
+}`;

@@ -31,6 +31,7 @@ export default async function graphqlServer({
     res.end();
     return false;
   }
+console.log("start connection");
 
   await connectToDatabase();
   await startServer;

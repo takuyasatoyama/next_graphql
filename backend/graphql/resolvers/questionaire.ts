@@ -9,12 +9,12 @@ const Query = {
 };
 
 const Mutation = {
-  async createQuestionaire(parent: any, args: any, ctx: any): Promise<schema.Mutation['createQuestionaire']> {
-    return await questionaireController().create(args);
-  },
-  async updateQuestionaire(parent: any, args: any, ctx: any): Promise<schema.Mutation['updateQuestionaire']> {
-    return await questionaireController().update(args);
-  },
+  // async createQuestionaire(parent: any, args: any, ctx: any): Promise<schema.Mutation['createQuestionaire']> {
+  //   return await questionaireController().create(args);
+  // },
+  // async updateQuestionaire(parent: any, args: any, ctx: any): Promise<schema.Mutation['updateQuestionaire']> {
+  //   return await questionaireController().update(args);
+  // },
   async deleteQuestionaire(parent: any, args: any, ctx: any): Promise<schema.Mutation['deleteQuestionaire']> {
     return await questionaireController().delete(args);
   },

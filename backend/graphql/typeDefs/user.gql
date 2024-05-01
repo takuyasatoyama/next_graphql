@@ -21,6 +21,6 @@ type UserEdgesType {
 
 type Query {
   readUser(_id: ID!): User
-  listUser( ): UserEdgesType
+  listUser( str : String! ): UserEdgesType
   searchUser(query: String!, fields: String!): [User]
 }

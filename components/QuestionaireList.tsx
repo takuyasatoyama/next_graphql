@@ -1,27 +1,13 @@
 import { gql, useQuery, NetworkStatus } from '@apollo/client';
-
 import ErrorMessage from '@/components/ErrorMessage';
-
 export const LIST_Questionaire_QUERY = gql`
-  query listQuestionaire($page: Int) {
-    listQuestionaire(page: $page) {
+  query listQuestionaire($str: String ) {
+    listQuestionaire( str : $str ) {
       edges {
         _id
-        owner {
-          name
-          email
-        }
-        desciption
-        priceByNight
-        reviews {
-          author {
-            name
-            email
-          }
-          rate
-          feedback
-          _id
-        }
+        label
+        answer_type
+        answer
       }
     }
   }
@@ -42,16 +28,6 @@ export default function QuestionaireList() {
   console.log('🚀 ~ file: QuestionaireList.tsx ~ line 53 ~ QuestionaireList ~ data', data);
 
   const { listQuestionaire } = data;
-
-//   const loadMoreQuestionaires = () => {
-//     fetchMore({
-//       variables: {
-//         page: listQuestionaire?.pagination.page + 1,
-//       },
-//     });
-//   };
-  const areMoreQuestionaires = listQuestionaire?.pagination.page < listQuestionaire?.pagination.pages;
-
   return (
     <section>
       {<ul>
@@ -66,11 +42,6 @@ export default function QuestionaireList() {
           </li>
         ))}
       </ul> }
-      {areMoreQuestionaires && (
-        <button onClick={() => loadMoreQuestionaires()} disabled={loadingMoreQuestionaires}>
-          {loadingMoreQuestionaires ? 'Loading...' : 'Show More'}
-        </button>
-      )}
     </section>
   );
 }

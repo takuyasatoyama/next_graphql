@@ -1,10 +1,12 @@
 import { connect } from 'mongoose';
 
-const MONGODB_URI: string = process.env.MONGODB_URI || "mongodb://localhost:27017/test";
+const MONGODB_URI: string = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/test';
 
 if (MONGODB_URI === '') {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
+
+
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
@@ -15,14 +17,14 @@ if (MONGODB_URI === '') {
 declare global {
   var mongoose: any;
 }
-
 let cached = global.mongoose;
 
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
+console.log("start connection3");
 
-async function connectToDatabase() {
+async function connectToDatabase() {  
   if (cached.conn) {
     return cached.conn;
   }
@@ -30,6 +32,8 @@ async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true 
     };
 
     cached.promise = connect(MONGODB_URI, opts).then((mongoose) => {

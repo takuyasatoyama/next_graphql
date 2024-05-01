@@ -10,33 +10,26 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Obj : Object
 };
 
 export type InputQuestionaireType = {
-  label: Scalars['String'];
-  answer_type: Scalars['Int'];
-  answer: Scalars['Obj'];
+  __typename?: 'InputQuestionaireType';
+  answer?: Maybe<Scalars['String']>;
+  answer_type?: Maybe<Scalars['Int']>;
+  label?: Maybe<Scalars['String']>;
 };
 
 export type InputUserType = {
   email: Scalars['String'];
-  pasword: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createQuestionaire?: Maybe<Questionaire>;
   createUser?: Maybe<User>;
-  deleteQuestionaire?: Maybe<Questionaire>;
-  deleteUser?: Maybe<User>;
-  updateQuestionaire?: Maybe<Questionaire>;
+  deleteQuestionaire?: Maybe<Scalars['Boolean']>;
+  deleteUser?: Maybe<Scalars['Boolean']>;
   updateUser?: Maybe<User>;
-};
-
-
-export type MutationCreateQuestionaireArgs = {
-  body: InputQuestionaireType;
 };
 
 
@@ -46,7 +39,7 @@ export type MutationCreateUserArgs = {
 
 
 export type MutationDeleteQuestionaireArgs = {
-  _id: Scalars['ID'];
+  _id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -55,22 +48,9 @@ export type MutationDeleteUserArgs = {
 };
 
 
-export type MutationUpdateQuestionaireArgs = {
-  _id: Scalars['ID'];
-  body: InputQuestionaireType;
-};
-
-
 export type MutationUpdateUserArgs = {
   _id: Scalars['ID'];
   body: InputUserType;
-};
-
-export type Questionaire = {
-  _id: Scalars['ID'];
-  label?: Maybe<Scalars['String']>;
-  answer_type?: Maybe<Scalars['Int']>;
-  answer?: Maybe<Scalars['Obj']>;
 };
 
 export type Query = {
@@ -83,7 +63,53 @@ export type Query = {
   searchUser?: Maybe<Array<Maybe<User>>>;
 };
 
+
+export type QueryListQuestionaireArgs = {
+  str?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryListUserArgs = {
+  str: Scalars['String'];
+};
+
+
+export type QueryReadQuestionaireArgs = {
+  _id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryReadUserArgs = {
+  _id: Scalars['ID'];
+};
+
+
+export type QuerySearchQuestionaireArgs = {
+  fields: Scalars['String'];
+  query: Scalars['String'];
+};
+
+
+export type QuerySearchUserArgs = {
+  fields: Scalars['String'];
+  query: Scalars['String'];
+};
+
+export type Questionaire = {
+  __typename?: 'Questionaire';
+  _id?: Maybe<Scalars['ID']>;
+  answer?: Maybe<Scalars['String']>;
+  answer_type?: Maybe<Scalars['Int']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+export type QuestionaireEdgesType = {
+  __typename?: 'QuestionaireEdgesType';
+  edges?: Maybe<Array<Maybe<Questionaire>>>;
+};
+
 export type User = {
+  __typename?: 'User';
   _id: Scalars['ID'];
   email?: Maybe<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
@@ -92,9 +118,4 @@ export type User = {
 export type UserEdgesType = {
   __typename?: 'UserEdgesType';
   edges?: Maybe<Array<Maybe<User>>>;
-};
-
-export type QuestionaireEdgesType = {
-  __typename?: 'QuestionaireEdgesType';
-  edges?: Maybe<Array<Maybe<Questionaire>>>;
 };

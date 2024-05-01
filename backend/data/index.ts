@@ -16,8 +16,6 @@ export const questionaires = [
     _id: '1',
     label: 'appartment',
     answer_type: 0,
-    answer : {
-      string : "this is answer",
-    }
+    answer : "This is answer"
   },
 ];

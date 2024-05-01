@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 
 import { crudControllerType, listArgsType } from './crudControllerType';
-
+import { questionaires } from '@/backend/data';
 function crudMethods<T>(ModelEntity: Model<T>) {
   let methods: crudControllerType<T> = {
     create: async (args) => {
@@ -77,46 +77,26 @@ function crudMethods<T>(ModelEntity: Model<T>) {
 
     list: async (args) => {
       try {
-        const page = parseInt(`${args?.page}`) || 1;
-        const limit = parseInt(`${args?.limit}`) || 10;
-        const sortBy = args?.sortBy || 'created';
-        const sortOrder: listArgsType['sortOrder'] = args?.sortOrder || 'desc';
-
-        const skip = page * limit - limit;
         //  Query the database for a list of all results
         const resultsPromise = ModelEntity.find()
-          .skip(skip)
-          .limit(limit)
-          .sort({ [sortBy]: sortOrder });
+        
         // Counting the total documents
         const countPromise = ModelEntity.count();
         // Resolving both promises
         const [result, count] = await Promise.all([resultsPromise, countPromise]);
 
-        // Calculating total pages
-        const pages = Math.ceil(count / limit);
-        // Getting Pagination Object
-        const pagination = { page, pages, count };
-        // returning result
         if (count > 0) {
           return {
             edges: result,
-            pagination,
           };
         } else {
           return {
-            edges: [],
-            pagination,
+            edges: questionaires,
           };
         }
       } catch {
         return {
           edges: [],
-          pagination: {
-            page: 0,
-            pages: 0,
-            count: 0,
-          },
         };
       }
     },
