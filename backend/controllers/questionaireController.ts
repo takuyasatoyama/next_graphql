@@ -5,9 +5,13 @@ import Questionaire from '@/backend/models/Questionaire';
 
 function questionaireController() {
   
-  const controllers = crudController<schemaType.Questionaire>(Questionaire);
+  return crudController<schemaType.Questionaire>(Questionaire);
+  // return controllers;
+}
 
-  controllers.create = async (args) => {
+export default questionaireController;
+/*
+controllers.create = async (args) => {
     try {
       // Creating a new document in the collection
       if (!args?.body) {
@@ -24,7 +28,5 @@ function questionaireController() {
       return null;
     }
   };
-  return controllers;
-}
 
-export default questionaireController;
+  */

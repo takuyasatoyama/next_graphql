@@ -17,5 +17,5 @@ export const questionaires = [
     label: 'appartment',
     answer_type: 0,
     answer : "This is answer"
-  },
+  }
 ];

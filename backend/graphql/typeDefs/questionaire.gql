@@ -13,6 +13,7 @@ type InputQuestionaireType {
   
 }
 type Mutation {
+	
 	deleteQuestionaire(_id : ID ) : Boolean 
 }
 type QuestionaireEdgesType {
